@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+		x:Class="ColonyConcierge.Mobile.Logistics.ChildJobItemView"
+		xmlns:i18n="clr-namespace:ColonyConcierge.Mobile.Logistics.Localization"
+		xmlns:xlabcontrols="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+		xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
+		xmlns:local="clr-namespace:ColonyConcierge.Mobile.Logistics" >
+	<ContentView.Content>
+		<StackLayout Orientation="Vertical">
+			<Grid BackgroundColor="{Binding LineSeparatorColor, Source={x:Static local:AppearanceBase.Instance}}" HeightRequest="1" VerticalOptions="Start" HorizontalOptions="Fill"/>
+			<Grid>
+				<StackLayout Orientation="Vertical" Padding="10">
+					<Grid Padding="3, 0">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="*"/>
+							<ColumnDefinition Width="*"/>
+						</Grid.ColumnDefinitions>
+						<Label Grid.Column="0" Text="{i18n:Translate OrderInput}" FontSize="Small" TextColor="Black" VerticalOptions="Start"/>
+						<Label Grid.Column="1" Text="{Binding Model.OrderID}" FontSize="Small" TextColor="Black"  VerticalOptions="Center"/>
+					</Grid>
+					<Grid Padding="3, 0">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="*"/>
+							<ColumnDefinition Width="*"/>
+						</Grid.ColumnDefinitions>
+						<Label Grid.Column="0" Text="{i18n:Translate NameInput}" FontSize="Small" TextColor="Black" VerticalOptions="Start"/>
+						<Label Grid.Column="1" Text="{Binding Model.Name}" FontSize="Small" TextColor="Black"  VerticalOptions="Center"/>
+					</Grid>
+					<Grid Padding="3, 0" x:Name="GridAddress">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="*"/>
+							<ColumnDefinition Width="*"/>
+						</Grid.ColumnDefinitions>
+						<Label Grid.Column="0" Text="{i18n:Translate AddressInput}" FontSize="Small" TextColor="Black" VerticalOptions="Start"/>
+						<xlabcontrols:ExtendedLabel TextColor="#0000EE" IsUnderline="true" x:Name="LabelAddress" Grid.Column="1" Text="{Binding Address}" FontSize="Small" VerticalOptions="Center"/>
+					</Grid>
+					<Grid Padding="3, 0" x:Name="GridPhone">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="*"/>
+							<ColumnDefinition Width="*"/>
+						</Grid.ColumnDefinitions>
+						<Label Grid.Column="0" Text="{i18n:Translate MobileInput}" FontSize="Small" TextColor="Black" VerticalOptions="Start"/>
+						<xlabcontrols:ExtendedLabel TextColor="#0000EE" IsUnderline="true" x:Name="LabelPhone" Grid.Column="1" Text="{Binding PhoneNumber}" FontSize="Small" VerticalOptions="Center"/>
+					</Grid>
+				</StackLayout>
+			</Grid>
+			<StackLayout Orientation="Vertical">
+				<Grid x:Name="GridOrderDetailsTitle" Padding="3, 0" BackgroundColor="#C3C3C3" Margin="0, 6, 0, 3">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*"/>
+						<ColumnDefinition Width="auto"/>
+					</Grid.ColumnDefinitions>
+					<Label Grid.Column="0" Text="{i18n:Translate OrderDetails}" FontSize="Small" TextColor="Black" VerticalOptions="Center"/>
+					<StackLayout Orientation="Vertical" Grid.Column="1" Padding="5">
+						<Image x:Name="ImageOrderDetailsTitle" HeightRequest="24" Aspect="AspectFit" VerticalOptions="Center" Source="Add.png"/>
+					</StackLayout>
+				</Grid>
+				<StackLayout Padding="3, 0" IsVisible="false" x:Name="StackLayoutOrderDetails" Orientation="Vertical">
+				</StackLayout>
+				<Label Margin="3, 0" IsVisible="false" x:Name="LabelSpecialInstructions" Text="" FontSize="Small" TextColor="Black" VerticalOptions="Center"/>
+			</StackLayout>
+			<Grid x:Name="GridButton">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition/>
+					<ColumnDefinition/>
+				</Grid.ColumnDefinitions>
+				<Button Command="{Binding SendMessageCommand}" FontSize="{Binding FontSmallL1, Source={x:Static local:AppearanceBase.Instance}}" Grid.Column="0" Text="{i18n:Translate SendAMessage}" VerticalOptions="Center">
+					<Button.BackgroundColor>
+						<OnPlatform x:TypeArguments="Color"
+			                                Android="Red"/>
+					</Button.BackgroundColor>
+					<Button.TextColor>
+						<OnPlatform x:TypeArguments="Color" 
+											Android="White"
+			                                iOS="Red"/>
+					</Button.TextColor>
+				</Button>
+				<Button x:Name="ButtonDropOff" Command="{Binding DropoffCommand}"  FontSize="{Binding FontSmallL1, Source={x:Static local:AppearanceBase.Instance}}" Grid.Column="1" Text="{i18n:Translate CompleteDropoff}" VerticalOptions="Center">
+					<Button.BackgroundColor>
+						<OnPlatform x:TypeArguments="Color"
+			                                Android="#43b02a"></OnPlatform>
+					</Button.BackgroundColor>
+					<Button.TextColor>
+						<OnPlatform x:TypeArguments="Color" Android="White"
+			                                iOS="#43b02a"></OnPlatform>
+					</Button.TextColor>
+				</Button>
+			</Grid>
+		</StackLayout>
+	</ContentView.Content>
+</ContentView>
